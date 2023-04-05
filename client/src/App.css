@@ -1,0 +1,352 @@
+.App {
+  border: 1px solid grey;
+  background-color: #c1a08e;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='46' viewBox='0 0 70 46'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23e1d107' fill-opacity='0.4'%3E%3Cpolygon points='68 44 62 44 62 46 56 46 56 44 52 44 52 46 46 46 46 44 40 44 40 46 38 46 38 44 32 44 32 46 26 46 26 44 22 44 22 46 16 46 16 44 12 44 12 46 6 46 6 44 0 44 0 42 8 42 8 28 6 28 6 0 12 0 12 28 10 28 10 42 18 42 18 28 16 28 16 0 22 0 22 28 20 28 20 42 28 42 28 28 26 28 26 0 32 0 32 28 30 28 30 42 38 42 38 0 40 0 40 42 48 42 48 28 46 28 46 0 52 0 52 28 50 28 50 42 58 42 58 28 56 28 56 0 62 0 62 28 60 28 60 42 68 42 68 0 70 0 70 46 68 46'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.App>* {
+  padding: 20px;
+}
+
+.main-content {
+  background-color: #c1a08e;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='46' viewBox='0 0 70 46'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23e1d107' fill-opacity='0.4'%3E%3Cpolygon points='68 44 62 44 62 46 56 46 56 44 52 44 52 46 46 46 46 44 40 44 40 46 38 46 38 44 32 44 32 46 26 46 26 44 22 44 22 46 16 46 16 44 12 44 12 46 6 46 6 44 0 44 0 42 8 42 8 28 6 28 6 0 12 0 12 28 10 28 10 42 18 42 18 28 16 28 16 0 22 0 22 28 20 28 20 42 28 42 28 28 26 28 26 0 32 0 32 28 30 28 30 42 38 42 38 0 40 0 40 42 48 42 48 28 46 28 46 0 52 0 52 28 50 28 50 42 58 42 58 28 56 28 56 0 62 0 62 28 60 28 60 42 68 42 68 0 70 0 70 46 68 46'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  /* flex-grow: 1; */
+  /* background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.4) 0%, rgba(235, 237, 238, 0.4) 100%), url("./assets/yellow_tapes.jpg");
+  background-color: #70bf40; */
+  background-color: #ffcb0c;
+  padding: 2px 2px 0px 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-content h2 {
+  align-items: center;
+  margin: 2px 2px 2px 2px;
+  padding: 2px 2px 2px 2px;
+}
+
+
+.home-profile h3 {
+  margin: 0px;
+  padding: 2px 2px 2px 2px;
+  text-transform: uppercase;
+}
+
+.home-profile p {
+  font-size: 16px;
+  margin: 0px;
+  padding: 2px 2px 2px 2px;
+}
+
+
+.title {
+  /* background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.4) 0%, rgba(235, 237, 238, 0.4) 100%), url("./assets/yellow_tapes.jpg"); */
+  background-color: #c1a08e;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='46' viewBox='0 0 70 46'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23e1d107' fill-opacity='0.4'%3E%3Cpolygon points='68 44 62 44 62 46 56 46 56 44 52 44 52 46 46 46 46 44 40 44 40 46 38 46 38 44 32 44 32 46 26 46 26 44 22 44 22 46 16 46 16 44 12 44 12 46 6 46 6 44 0 44 0 42 8 42 8 28 6 28 6 0 12 0 12 28 10 28 10 42 18 42 18 28 16 28 16 0 22 0 22 28 20 28 20 42 28 42 28 28 26 28 26 0 32 0 32 28 30 28 30 42 38 42 38 0 40 0 40 42 48 42 48 28 46 28 46 0 52 0 52 28 50 28 50 42 58 42 58 28 56 28 56 0 62 0 62 28 60 28 60 42 68 42 68 0 70 0 70 46 68 46'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2px 2px 0px 2px;
+  /* background-color: #51a7fa; */
+  text-decoration: none;
+}
+
+.title h1 {
+  margin: 2px 2px 2px 2px;
+}
+
+.title h2 {
+  margin: 2px 2px 2px 2px;
+}
+
+.title h3 {
+  margin: 2px 2px 2px 2px;
+  padding: 2px 2px 2px 2px;
+}
+
+.title .login-button {
+  /* display: inline-block; */
+  align-self: flex-end;
+  margin-right: 10px;
+  padding: 2px 2px 2px 2px;
+  border: 1px solid black;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+
+.title ul {
+  display: flex;
+  order: 1;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.title Link {
+  text-decoration: none;
+}
+
+.Map {
+  display: flex;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+}
+
+.mapboxgl-marker {
+  color: black;
+}
+
+.mapboxgl-popup-content {
+  position: relative;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 10px 10px 15px;
+  pointer-events: auto;
+}
+
+svg {
+  opacity: 0.8;
+}
+
+.info-window {
+  width: 300px;
+  height: 150px;
+  border-radius: 2px;
+  border: solid grey;
+  padding: 1px;
+  /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); */
+}
+
+.info-window p {
+  font-size: 14px;
+  color: green;
+}
+
+
+/* Global buttons */
+.content-button {
+  align-self: center;
+  display: column;
+  padding: .2em .4em;
+  text-decoration: none;
+  margin: .2em .2em;
+  border: 3px solid black;
+  background-color: white;
+  color: red;
+  /*border-radius: 10px;*/
+  font-weight: 600;
+}
+
+/* a.content-button {
+	color: red;
+	text-decoration: none;
+} */
+
+a.content-button:focus,
+a.content-button:hover {
+  background: #B51C35;
+  color: #FFFCED;
+}
+
+@media screen and (min-width: 601px) {
+  .title ul {
+    width: auto;
+    margin-top: 0;
+  }
+}
+
+/*BASE STYLES  */
+body {
+  margin: 0;
+}
+
+footer {
+  background-color: #ffcb0c;
+  margin-top: 5px;
+  display: inline-flex;
+  justify-content: space-between;
+  padding: 5px;
+  color: black;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+}
+
+p {
+  margin-bottom: 1.5em;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+dfn,
+cite,
+em,
+i {
+  font-style: italic;
+}
+
+blockquote {
+  margin: 0 1.5em;
+}
+
+address {
+  margin: 0 0 1.5em;
+}
+
+pre {
+  display: inline-block;
+  font-family: "Courier 10 Pitch", Courier, monospace;
+  color: #ddca7e;
+  background: #282c34;
+  padding: .5em .8em;
+  border-radius: .2em;
+}
+
+code,
+kbd,
+tt,
+var {
+  font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+abbr,
+acronym {
+  border-bottom: 1px dotted #666;
+  cursor: help;
+}
+
+mark,
+ins {
+  background: #fff9c0;
+  text-decoration: none;
+}
+
+sup,
+sub {
+  font-size: 75%;
+  height: 0;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  bottom: 1ex;
+}
+
+sub {
+  top: .5ex;
+}
+
+small {
+  font-size: 75%;
+}
+
+big {
+  font-size: 125%;
+}
+
+/* Global layouts */
+@media screen and (min-width: 700px) {
+  .two-column {
+    column-count: 2;
+    column-gap: 2.4em;
+  }
+}
+
+
+.site {
+  /* 	margin: 1em; */
+}
+
+.masthead,
+.page-title,
+.main-content,
+.sidebar,
+.footer-content {
+  /* 	margin-bottom: 1em; */
+  padding: 1em;
+  color: black;
+
+}
+
+.map-container {
+  height: 400px;
+}
+
+.sidebar {
+  background-color: rgba(35, 55, 75, 0.9);
+  color: #fff;
+  padding: 6px 12px;
+  font-family: monospace;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 12px;
+  border-radius: 4px;
+}
+
+.marker {
+  /* background-image: url('mapbox-icon.png'); */
+  background-color: #B51C35;
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+.sidebar1 {
+  background-color: #f49018;
+}
+
+.sidebar2 {
+  background-color: #ac8658;
+}
+
+
+
+/*
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+} */
+
+.App-link {
+  color: #61dafb;
+}

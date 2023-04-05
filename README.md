@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# food-cart-coma
+## Discover, Rate and Share Food Carts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### FOODIES: Do you spend your lunch time seeking out food cart fare? Are you frustrated that you can't readily find them on standard maps? Would you like to share your favorite cart locations with your foodie friends? Then join us in a FoodCartComa! 
 
-## Available Scripts
+### VENDORS: Would you like to gain more visibility? Would you like to be featured in select, privately-shared maps made and used by foodies? Sign up! 
 
-In the project directory, you can run:
+## VISUALS:  
 
-### `npm start`
+-- ERD: https://i.imgur.com/BvHWdxc.png  
+-- wireframes: (link)  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## TECH: 
 
-### `npm test`
+React  
+Node  
+Express  
+Sequelize  
+Postgres  
+Axios  
+bcrypt  
+mapbox + Uber's mapbox-GL  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+post-MVP:  
+FriendList  
+venmo payment?   
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## CONTROLLERS:  
+vendorController  
+specialsController   
+userController  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+----
+## REACT COMPONENTS:  
+Hierarchy: (link)  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### MVP:  
+Map  
+VendorList  
+NewVendorForm  
+UpdateVendorForm  
+SingleVendor  
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Post-MVP:
+UserRegister  
+UserLogin  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### TIMELINE: 
+Day 1: populating map with existing artists  
+Day 2: CREATING new artists via map input  
+Day 3: front-end  
+Day 4: auth + front-end
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+| Component | Priority | Estimated Time | Time Invested | Actual Time |
+| --- | :---: |  :---: | :---: | :---: |
+| Configuring API | High | 3hrs| N/A | N/A |
+| Creating Component Structure/Routes | High | 3hrs| N/A | N/A |
+| Populating database | High | 3hrs| N/A | N/A |
+| Connecting DB with front-end | High | 3hrs| N/A | N/A |
+| Populating map at window open | High | 3hrs| N/A | N/A |
+| Handling new artist creation via map | High | 6hrs| N/A | N/A |
+| Styling | High | 4hrs| N/A | N/A |
+| Total | H | 6hrs| 5hrs | 5hrs |
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# tryfs
