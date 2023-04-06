@@ -32,31 +32,11 @@ const Map = (props) => {
     });
   }, []);
 
-  useEffect(() => {
-    map.current.on('load', function () {
-      if (props.vendors.length > 0) {
-        //console.log("loaded")
-        // add markers to map
-        props.vendors.map((vendor) => {
-          // create a HTML element for each feature
-          console.log("Start Mapping")
-          const el = document.createElement('div');
-          el.className = 'marker';
-          // make a marker for each feature and add to the map
-          new mapboxgl.Marker(el).setLngLat([vendor.long, vendor.lat]).addTo(map.current);
-          //console.log("vendor.long: ", vendor.long)
-          console.log("Mapped")
-        })
-      }
-    });
-
-  });
-
-  useEffect(() => {
-    //console.log("props.vendors from loaded: ", props.vendors)
-    //console.log("map: ", map)
+  const addMarkers = () => {
     if (map.current && map.current.loaded() && props.vendors.length > 0) {
       //console.log("loaded")
+      //clear out markers 
+      map.current.removeLayer('markers')
       // add markers to map
       props.vendors.map((vendor) => {
         // create a HTML element for each feature
@@ -64,48 +44,44 @@ const Map = (props) => {
         const el = document.createElement('div');
         el.className = 'marker';
         // make a marker for each feature and add to the map
-        new mapboxgl.Marker(el).setLngLat([vendor.long, vendor.lat]).addTo(map);
+        //then create a popup for each marker
+        const popup = new mapboxgl.Popup().setHTML(
+          `<h3>${vendor.username}</h3><p>${vendor.website}</p>`
+        );
+
+        const marker = new mapboxgl.Marker({
+          element: el,
+          draggable: true
+        })
+          .setLngLat([vendor.long, vendor.lat])
+          .setPopup(popup)
+          .addTo(map.current);
         //console.log("vendor.long: ", vendor.long)
         console.log("Mapped")
+
+        function onDragEnd() {
+          const lngLat = marker.getLngLat();
+          // coordinates.style.display = 'block';
+          // coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
+          console.log("lngLat", lngLat)
+        }
+        marker.on('dragend', onDragEnd);
       })
     }
     console.log("marker", document.getElementsByClassName("marker"))
+  }
 
+
+  useEffect(() => {
+    map.current.on('load', function () {
+      addMarkers()
+    });
+
+  });
+
+  useEffect(() => {
+    addMarkers()
   }, [props.vendors]);
-  // eslint-disable-line react-hooks/exhaustive-deps
-
-
-
-
-  // map.on('click', function (e) {
-  // document.getElementById('info').innerHTML =
-  // // e.point is the x, y coordinates of the mousemove event relative
-  // // to the top-left corner of the map
-  // JSON.stringify(e.point) + '<br />' +
-  // // e.lngLat is the longitude, latitude geographical position of the event
-  // JSON.stringify(e.lngLat.wrap());
-  // });
-
-  //<Link to={{
-  //   pathname: '/tylermcginnis',
-  //   state: {
-  //     fromNotifications: true
-  //   }
-  // }}>Tyler McGinnis</Link>
-
-  //render() {
-
-  // {...this.state.viewport}
-  //onViewportChange={(viewport) => this.setState({viewport})}
-
-  // console.log(this.props)
-  //   let redirect = this.props.clicked && <Redirect to={{
-  //     pathname: "/nvf",
-  //     state: {
-  //       lat: this.state.mapLat,
-  //       long: this.state.mapLng
-  //     }
-  // }}  />
 
   return (
     <div >
