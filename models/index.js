@@ -20,6 +20,8 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+//the index file exports the generic sequelize config info plus the vendormodel 
+
 db.vendors = require("./vendor.model.js")(sequelize, Sequelize);
 
 //console.log(db);

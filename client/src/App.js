@@ -1,15 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
 import ReactMapGL from 'react-map-gl';
-// import {
-//   Route, Switch, Redirect
-// } from 'react-router-dom';
+import {
+  Routes, Route, useNavigate
+} from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { showVendors, createVendor } from './services/api-helper';
+import { loginUser, registerUser, showVendors, createVendor, updateVendor } from './services/api-helper';
 import './App.css';
 import VendorList from './components/VendorList'
+import Login from './components/Login'
 //we don't need SinlgeVendor because it's already been imported in the component Vendorlist ("import SingleVendor from './SingleVendor';")
-import NewVendorForm from './components/NewVendorForm'
+import VendorForm from './components/VendorForm'
 import Map from './components/Map'
 // import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 // import 'mapbox-gl/dist/mapbox-gl.css';
@@ -34,9 +35,24 @@ function App() {
   //   });
   // });
 
-
   const [vendorListData, setVendorListData] = useState([]);
-  const [newVendor, setNewVendor] = useState({});
+  const [vendor, setVendor] = useState({});
+  const [formData, setFormData] = useState({})
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    // console.log('props login click', this.props)
+    const userData = await loginUser(formData);
+    console.log('userData from handleLogin: ', userData)
+    localStorage.setItem("jwt", userData.token.token)
+    setVendor(userData.user)
+    navigate("/vendors/" + userData.user.dataValues.id)
+  };
+
+  const loginHandleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value })
+  }
 
   //because we have the "await" obligation we need a getVendors function to compose a list of vendors from the asynchrnous "showVendors" 
   const getVendors = async () => {
@@ -46,27 +62,26 @@ function App() {
   }
 
   const postVendor = async () => {
-    const vendor = await createVendor(newVendor)
-    console.log("new Vendor: ", vendor)
+    const createdVendor = await createVendor(vendor)
+    console.log("new Vendor: ", createdVendor)
     getVendors()
   }
 
+  //we are using a local version of the updateVendor function because we don't get to overwrite the updateVendor coming from the api-helper
+  const updateVendorfromMap = async (updatedVendor) => {
+    console.log("updatedVendor from Map: ", updatedVendor)
+    const vendor = await updateVendor(updatedVendor, updatedVendor.id)
+    console.log("UPDATED Vendor from server: ", vendor)
+    //getVendors()
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewVendor({
-      ...newVendor,
+    setVendor({
+      ...vendor,
       [name]: value,
     })
   }
-
-
-
-  //old React syntax -- once the component has been loaded into the page, it fires once
-  // componentDidMount() {
-  //   console.log('Hey guys, componentDidMount!')
-  //   this.getVendors()
-  // }
 
   //by creating an empty array, we say we only want to run getVendors once 
   useEffect(() => { getVendors() }, []);
@@ -84,15 +99,40 @@ function App() {
           <div ref={mapContainer} className="map-container" />
         </div> */}
 
+
+        {/* <Route path="/" element={ <> <Login/>   <Map  vendors={vendorListData} />   <RegisterCtaButton/> </> } /> */}
+
+        <Routes>
+
+          <Route path="/" element={
+            <Login handleLogin={handleLogin}
+              handleChange={loginHandleChange}
+              formData={formData} />
+          } />
+
+          <Route path="/vendors/:id" element={
+            <VendorForm handleSubmit={updateVendorfromMap}
+              handleChange={handleChange}
+              form={vendor} />
+          } />
+
+
+        </Routes>
+
         <Map
+          //vendors below is the prop that we are passing to the Map component; we are allowing Map to have a props.vendors that has info from the vendorListData
+          newVendorSetter={setVendor}
           vendors={vendorListData}
+          vendorSetter={setVendorListData}
+          showUpdateVendor={updateVendorfromMap}
         />
 
 
-        <NewVendorForm
-          form={newVendor}
+        <VendorForm
+          form={vendor}
           handleChange={handleChange}
           handleSubmit={postVendor}
+        //we def don't need these two lines:
         // lat={this.state.mapLat}
         // long={this.state.mapLong}
         />
@@ -101,7 +141,7 @@ function App() {
           vendors={vendorListData}
         />
       </header>
-    </div>
+    </div >
   );
 }
 

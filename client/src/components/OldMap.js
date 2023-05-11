@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { useRef, useState, useEffect } from 'react';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
-import VendorForm from './VendorForm'
+import NewVendorForm from './NewVendorForm'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -11,7 +11,6 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibWFyaWVmciIsImEiOiJjbGZ1YnlxZngwOTNyM3BtZ2g2a
 const Map = (props) => {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const markersRef = useRef({})
   const [lng, setLng] = useState(-73.9841719);
   const [lat, setLat] = useState(40.753345);
   const [zoom, setZoom] = useState(14);
@@ -28,25 +27,7 @@ const Map = (props) => {
     });
   }, []);
 
-  useEffect(() => {
-    map.current.on('load', function () {
-      addMarkers()
-    });
-  })
-
-
-  useEffect(() => {
-    addMarkers()
-  }, [props.vendors]);
-
-
-  //const createMarker?? 
-  //const moveMarker?? with same functionality as addMarkers 
-
-
-
   const addMarkers = () => {
-    console.log("props.vendors: ", props.vendors)
     if (map.current && map.current.loaded() && props.vendors.length > 0) {
       console.log("map.current.getLayer(markers): ", map.current.getLayer('markers'))
       if (map.current.getLayer('markers') !== undefined) {
@@ -55,61 +36,32 @@ const Map = (props) => {
       props.vendors.map((vendor) => {
         // create a HTML element for each feature
         console.log("Start Mapping")
-        let marker = markersRef.current[vendor.id];
-        console.log("marker from markersRef: ", marker)
+        const el = document.createElement('div');
+        el.className = 'marker';
+        // make a marker for each feature and add to the map
+        //then create a popup for each marker
+        const popup = new mapboxgl.Popup().setHTML(
+          `<h3>${vendor.username}</h3><p>${vendor.website}</p>`
+        );
 
-        if (!marker) {
-          const el = document.createElement('div');
-          el.className = 'marker';
-          // make a marker for each feature and add to the map
-          //then create a popup for each marker
-          const popup = new mapboxgl.Popup().setHTML(
-            `<h3>${vendor.username}</h3><p>${vendor.website}</p>`
-          );
-
-          marker = new mapboxgl.Marker({
-            element: el,
-            draggable: true
-          })
-            .setLngLat([vendor.long, vendor.lat])
-            .setPopup(popup)
-            .addTo(map.current);
-          console.log("Mapped")
-
-          markersRef.current[vendor.id] = marker;
-        } else {
-          marker.setLngLat([vendor.long, vendor.lat]);
-        }
-
+        const marker = new mapboxgl.Marker({
+          element: el,
+          draggable: true
+        })
+          .setLngLat([vendor.long, vendor.lat])
+          .setPopup(popup)
+          .addTo(map.current);
+        console.log("Mapped")
 
         function onDragEnd() {
           const lngLat = marker.getLngLat();
           console.log("the vendor data is ", vendor)
           console.log("lngLat", lngLat)
           //step 1:  change the vendor's lat long to the new one; 
-          // vendor.long = lngLat.lng
-          // vendor.lat = lngLat.lat
-
-          //now trying updatedVendor from ChatMap:
-          const updatedVendor = {
-            ...vendor,
-            long: lngLat.lng,
-            lat: lngLat.lat
-          };
-          console.log("updatedVendor is ", updatedVendor)
-          //this also from ChatMap:
-          props.vendorSetter((prevVendors) => {
-            // Remove the old vendor from the vendors array
-            const vendors = prevVendors.filter((v) => v.id !== updatedVendor.id);
-            // Add the updated vendor to the vendors array
-            vendors.push(updatedVendor);
-            return vendors;
-          });
-
+          vendor.long = lngLat.lng
+          vendor.lat = lngLat.lat
           // step2: save the new latlong to the currentvendor state 
-          //setCurrentVendor(vendor)
-          setCurrentVendor(updatedVendor)
-          //step3: save the new latlong to the databasendor)
+          setCurrentVendor(vendor)
           //we attempted this to remove previous marker, but didn't work
           // props.vendorSetter(props.vendors)
           //now we need to attach useEffect to the currentVendor state to update the database, then log it to the console
@@ -123,6 +75,15 @@ const Map = (props) => {
   }
 
 
+  useEffect(() => {
+    map.current.on('load', function () {
+      addMarkers()
+    });
+  });
+
+  useEffect(() => {
+    addMarkers()
+  }, [props.vendors]);
 
   useEffect(() => {
     if (currentVendor.id) {
@@ -131,6 +92,8 @@ const Map = (props) => {
       console.log("props", props)
     }
   }, [currentVendor]);
+
+
 
   return (
     <div >

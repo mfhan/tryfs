@@ -1,6 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
   const Vendor = sequelize.define("vendor", {
     username: Sequelize.STRING,
+    password_digest: Sequelize.STRING,
     // zipcode: Sequelize.INTEGER,
     lat: {
       type: Sequelize.FLOAT,

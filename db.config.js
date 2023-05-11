@@ -3,7 +3,7 @@ module.exports = {
   HOST: "localhost",
   USER: "mfhan",
   PASSWORD: "123",
-  DB: "tryfs_db",
+  DB: "tryfs_again_db",
   dialect: "postgres",
   pool: {
     max: 5,

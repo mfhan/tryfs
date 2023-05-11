@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-const NewVendorForm = (props) => {
+const VendorForm = (props) => {
   // console.log(props.lat)
   // console.log(props.long)
   // if (props.form.id) {
@@ -21,20 +21,20 @@ const NewVendorForm = (props) => {
           value={props.form.username}
           onChange={e => props.handleChange(e)}
         />
-        {/* <label htmlFor="lat">Latitude:</label>
+        <label htmlFor="lat">Latitude:</label>
         <input
           type="number"
           name="lat"
-          value={props.lat}
+          value={props.form.lat}
           onChange={e => props.handleChange(e)}
-          />
-          <label htmlFor="long">longitude:</label>
-          <input
-            type="number"
-            name="long"
-            value={props.long}
-            onChange={e => props.handleChange(e)}
-            /> */}
+        />
+        <label htmlFor="long">longitude:</label>
+        <input
+          type="number"
+          name="long"
+          value={props.form.long}
+          onChange={e => props.handleChange(e)}
+        />
         <label htmlFor="website">website:</label>
         <input
           type="text"
@@ -48,4 +48,4 @@ const NewVendorForm = (props) => {
   )
 };
 
-export default NewVendorForm;
+export default VendorForm;
